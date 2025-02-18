@@ -59,13 +59,13 @@
   align-items: center;
   font-weight: bold;
 }
-.kolt-totalkm {
+/* .kolt-totalkm {
   padding-left: 30px;
-}
+} */
 
 input[type="range"] {
   -webkit-appearance: none;
-  width: 35%;
+  width: 43%;
   height: 5px;
   background: #000;
   border-radius: 5px;
@@ -91,6 +91,36 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
+input[type="text"] {
 
+  background-color: rgb(221, 226, 224);
+  border: solid black 1px;
+  font-weight: 500;
+  font-size: 16px;
+}
 
+input[type="date"] {
+  padding: 6px 30px;
+  border: solid black 1px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: rgb(221, 226, 224);
+  cursor: pointer;
+}
 
+.radio {
+  display: flex;
+  justify-content: space-between;
+  
+  
+}
+
+.busy {
+  padding-right: 20px;
+  padding-left: 250px;
+}
+
+input[type="radio"] {
+  accent-color: #000;
+}
