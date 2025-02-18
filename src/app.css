@@ -1,13 +1,96 @@
-.app-bin {
-  display: flex;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  
 }
 
-.create-bin, .list-bin {
- 
+.app {
+  
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 20px;
+  
+  font-style: normal;
+}
+
+
+.app-bin {
+  display: flex;
+  
+}
+
+.create-bin {
   text-align: center;
   align-items: center;
   margin: auto;
 }
+
+.list-bin {
+  text-align: center;
+  align-items: center;
+  margin: auto;
+}
+.create-template {
+  min-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f3f4f6;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: solid #000 1px;
+}
+
+.topic {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  
+}
+
+.create-template div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+.kolt-totalkm {
+  padding-left: 30px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 35%;
+  height: 5px;
+  background: #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #000;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: #000;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 
 
 
