@@ -3,21 +3,24 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   
 }
 
 .app {
   
-  max-width: 1260px;
+  
   margin: 0 auto;
   padding: 0 20px;
-  
+  display: flex;
+  justify-content: center;
   font-style: normal;
 }
 
 
 .app-bin {
   display: flex;
+  justify-content: space-between;
   
 }
 
@@ -25,15 +28,17 @@
   text-align: center;
   align-items: center;
   margin: auto;
+  padding: 10px;
 }
 
 .list-bin {
   text-align: center;
   align-items: center;
   margin: auto;
+  padding: 10px;
 }
 .create-template {
-  min-width: 500px;
+  min-width: 450px;
   margin: 50px auto;
   padding: 20px;
   background: #f3f4f6;
@@ -41,9 +46,9 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: solid #000 1px;
 }
+
 
 .topic {
   text-align: center;
@@ -102,6 +107,7 @@ input[type="text"] {
 input[type="date"] {
   padding: 6px 30px;
   border: solid black 1px;
+  
   border-radius: 5px;
   font-size: 16px;
   color: #333;
@@ -124,3 +130,40 @@ input[type="date"] {
 /* input[type="radio"] {
   accent-color: #000;
 } */
+
+.list-header {
+  text-align: center;
+  color: black;
+  border: solid #000 1px;
+  border-radius: 16px;
+  background: #f3f4f6;
+}
+
+.list-body {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.list-group {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: solid 1px;
+  overflow: hidden;
+
+}
+
+.list-group th, 
+.list-group td {
+  padding: 12px 15px;
+  text-align: left;
+  
+}
+
+
+.list-group .actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+

@@ -34,32 +34,32 @@ export default function Create() {
     return (
         <div className="create-template">
 
-            <div className="topic"> Įveskite paspirtuko Duomenis</div>
+            <div className="topic"> New Kolt</div>
             <div>
-                <label className="kolt-id">Paspirtuko ID:</label>
+                <label className="kolt-id">ID:</label>
                 <input type="text" name="id" className="kolt-id-ctrl" onChange={handleKolt} value={kolt.id} />
             </div>
             <div>
-                <label className="kolt-code">Registracijos kodas:</label>
+                <label className="kolt-code">Code:</label>
                 <input type="text" name="code" className="kolt-code-ctrl" min={10000000} max={99999999} onChange={handleKolt} value={kolt.code} />
             </div>
             
 
             <div>
-                <label className="kolt-busy">Užimtumas:</label>
+                <label className="kolt-busy">IsBusy:</label>
                 <input type="text" name="busy" className="kolt-busy-ctrl"  onChange={handleKolt} value={kolt.busy} />
             </div>
                
             <div>
-                <label className="kolt-date">Paskutinio naudojimo data:</label>
+                <label className="kolt-date">Last used:</label>
                 <input type="date" name="lastusedate" className="kolt-date-ctrl" onChange={handleKolt} value={kolt.lastusedate} />
             </div>
             <div>
-                <label >Rida kilometrais: <b className="kolt-totalkm">{kolt.totalridekm}km</b></label>
+                <label >Ride km: <b className="kolt-totalkm">{kolt.totalridekm}km</b></label>
                 <input type="range"  name="totalridekm" className="kolt-totalkm-ctrl" min={1} max={5000} step={0.01} onChange={handleKolt} value={kolt.totalridekm} />
             </div>
 
-            <button className="green" onClick={saveToLocalStorage}>Įrašyti duomenis</button>
+            <button className="green" onClick={saveToLocalStorage}>Save</button>
 
         </div>
     );
