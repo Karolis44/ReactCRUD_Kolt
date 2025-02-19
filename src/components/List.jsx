@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
 export default function List() {
+    
     const [koltList, setKoltList] = useState([]);
 
-    // Gauti duomenis iš localStorage, kai komponentas užsikrauna
+
     useEffect(() => {
         const savedData = JSON.parse(localStorage.getItem("koltData")) || [];
         setKoltList(savedData);
