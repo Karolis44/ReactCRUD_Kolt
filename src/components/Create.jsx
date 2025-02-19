@@ -1,11 +1,8 @@
-import { useState} from "react";
+import { useState } from "react";
 import * as C from './constants';
 
-export default function Create() {
-
-
-    const [kolt, setkolt] = useState(C.defaultKolt);
-    
+export default function Create({ setKoltList }) {
+    const [kolt, setKolt] = useState(C.defaultKolt);
 
     const handleKolt = e => {
         let value = e.target.value;
@@ -14,22 +11,17 @@ export default function Create() {
             value = parseFloat(value).toFixed(2);
         }
 
-        setkolt({ ...kolt, [e.target.name]: value });
+        setKolt({ ...kolt, [e.target.name]: value });
     };
 
     const saveToLocalStorage = () => {
-     
-        let existingData = JSON.parse(localStorage.getItem('koltData'));
-        if (!Array.isArray(existingData)) {
-            existingData = [];
-        }
-    
-        existingData.push(kolt);
+        let existingData = JSON.parse(localStorage.getItem('koltData')) || [];
 
-        localStorage.setItem('koltData', JSON.stringify(existingData));
-    
-        alert('Duomenys išsaugoti!');
-        
+        const updatedData = [...existingData, kolt];
+        localStorage.setItem('koltData', JSON.stringify(updatedData));
+
+        setKoltList(updatedData);  
+        setKolt(C.defaultKolt); 
     };
 
     return (

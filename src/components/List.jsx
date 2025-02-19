@@ -1,15 +1,8 @@
-import { useState, useEffect } from "react";
 
-export default function List() {
+
+export default function List({ koltList }) {
     
-    const [koltList, setKoltList] = useState([]);
-
-
-    useEffect(() => {
-        const savedData = JSON.parse(localStorage.getItem("koltData")) || [];
-        setKoltList(savedData);
-    }, []);
-
+  
     return (
         <div className="list-template">
             <div className="list-header">
