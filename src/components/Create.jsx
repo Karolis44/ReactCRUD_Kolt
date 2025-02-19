@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import * as C from './constants';
 
 export default function Create() {
@@ -29,6 +29,7 @@ export default function Create() {
         localStorage.setItem('koltData', JSON.stringify(existingData));
     
         alert('Duomenys išsaugoti!');
+        
     };
 
     return (
