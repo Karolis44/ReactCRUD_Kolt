@@ -1,7 +1,7 @@
 export const defaultKolt = {
         id: '',
         code: '',
-        busy: '',
+        busy: 'No',
         lastusedate: '',
         totalridekm: '1'
 

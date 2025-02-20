@@ -1,6 +1,6 @@
+import { useState, useEffect } from "react";
 import './app.css';
 import './buttons.css';
-import { useState, useEffect } from "react";
 import Create from './components/Create';
 import List from './components/List';
 
@@ -19,7 +19,7 @@ export default function App() {
           <Create setKoltList={setKoltList} />
         </div>
         <div className='list-bin'>
-          <List koltList={koltList} />
+          <List koltList={koltList} setKoltList={setKoltList} />
         </div>
       </div>      
     </div>

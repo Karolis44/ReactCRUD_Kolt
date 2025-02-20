@@ -1,8 +1,6 @@
+import Delete from './Delete';
 
-
-export default function List({ koltList }) {
-    
-  
+export default function List({ koltList, setKoltList }) {
     return (
         <div className="list-template">
             <div className="list-header">
@@ -11,25 +9,25 @@ export default function List({ koltList }) {
                     <table className="list-group">
                         <thead>
                             <tr className="list-group-item">
-                                <th className="id">ID</th>
-                                <th className="code">Code</th>
-                                <th className="busy">Is Busy</th>
-                                <th className="lastusedate">Last Used</th>
-                                <th className="totalridekm">Ride km</th>
-                                <th className="actions">Actions</th>
+                                <th>ID</th>
+                                <th>Code</th>
+                                <th>Is Busy</th>
+                                <th>Last Used</th>
+                                <th>Ride km</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {koltList.length > 0 ? (
-                                koltList.map((kolt, index) => (
-                                    <tr key={index}>
+                                koltList.map((kolt) => (
+                                    <tr key={kolt.code}> 
                                         <td>{kolt.id}</td>
                                         <td>{kolt.code}</td>
-                                        <td>{kolt.busy === "true" ? "Yes" : "No"}</td>
+                                        <td>{kolt.busy}</td>
                                         <td>{kolt.lastusedate}</td>
                                         <td>{kolt.totalridekm} km</td>
                                         <td className="actions">
-                                            <button className="red">Delete</button>
+                                            <Delete koltCode={kolt.code} koltList={koltList} setKoltList={setKoltList} />
                                             <button className="blue">Edit</button>
                                         </td>
                                     </tr>
