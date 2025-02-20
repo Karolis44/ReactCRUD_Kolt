@@ -32,7 +32,7 @@ export default function Delete({ koltCode, koltList, setKoltList }) {
                 <div className="modal-overlay">
                     <div className="modal">
                         <div className="modal-content">
-                            <p>Ar tikrai norite ištrinti šį įrašą?</p>
+                            <p>Do you really want to delete this data ?</p>
                             <div className="modal-buttons">
                                 <button className="red" onClick={handleDelete}>Taip</button>
                                 <button className="yellow" onClick={() => setShowModal(false)}>Ne</button>
