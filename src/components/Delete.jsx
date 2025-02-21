@@ -1,46 +1,18 @@
-import { useState, useEffect } from "react";
 
-export default function Delete({ koltCode, koltList, setKoltList }) {
-    const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        if (showModal) {
-            document.body.classList.add("modal-open");
-        } else {
-            document.body.classList.remove("modal-open");
-        }
-
-        return () => document.body.classList.remove("modal-open");
-    }, [showModal]);
-
-    const handleDelete = () => {
-        const updatedList = koltList
-            .filter(kolt => kolt.code !== koltCode) 
-            .map((kolt, index) => ({ ...kolt, id: index + 1 }));
-
-        setKoltList(updatedList);
-        localStorage.setItem("koltData", JSON.stringify(updatedList));
-
-        setShowModal(false); 
-    };
+export default function Delete({ kolt, handleDelete, closeDeleteModal }) {
 
     return (
-        <>
-            <button className="red" onClick={() => setShowModal(true)}>Delete</button>
-
-            {showModal && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <div className="modal-content">
-                            <p>Do you really want to delete this data ?</p>
-                            <div className="modal-buttons">
-                                <button className="red" onClick={handleDelete}>Taip</button>
-                                <button className="yellow" onClick={() => setShowModal(false)}>Ne</button>
-                            </div>
-                        </div>
+        <div className="modal-overlay">
+            <div className="modal">
+                <div className="modal-content">
+                    <p>Are you sure you want to delete this data?</p>
+                    <p><b>{kolt.code}</b></p>
+                    <div className="modal-buttons">
+                        <button className="red" onClick={handleDelete}>Yes</button>
+                        <button className="yellow" onClick={closeDeleteModal}>No</button>
                     </div>
                 </div>
-            )}
-        </>
+            </div>
+        </div>
     );
 }
