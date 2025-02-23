@@ -35,7 +35,7 @@ export default function List({ koltList, openEditModal, openDeleteModal }) {
                             ) : (
                                 <tr>
                                 <td colSpan="6" className="no-data">
-                                    No data available
+                                    No data available at this time
                                 </td>
                             </tr>
                             )}
