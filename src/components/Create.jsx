@@ -12,19 +12,27 @@ export default function Create({ setKoltList }) {
    
 
     useEffect(() => {
-        setKolt(prev => ({ ...prev, id: generateId(), code: generateCode(), busy: "No" }));
+        setKolt(prev => ({ ...prev, id: generateId(), code: generateCode(), busy: "Free" }));
     }, []);
 
 
 
     const handleKolt = e => {
-        let value = e.target.value;
+        let { name, value } = e.target;
 
-        if (e.target.name === 'totalridekm') {
+        if (name === 'lastusedate') {
+            const selectedYear = new Date(value).getFullYear();
+            if (selectedYear < 2025) {
+                alert("Date cannot be earlier than 2025!");
+                return;
+            }
+        }
+
+        if (name === 'totalridekm') {
             value = parseFloat(value).toFixed(2);
         }
 
-        setKolt({ ...kolt, [e.target.name]: value });
+        setKolt({ ...kolt, [name]: value });
     };
 
 
@@ -32,13 +40,13 @@ export default function Create({ setKoltList }) {
     const saveToLocalStorage = () => {
         let existingData = JSON.parse(localStorage.getItem('koltData')) || [];
 
-        const newKolt = { ...kolt, id: generateId(), busy: "Yes" }  
+        const newKolt = { ...kolt, id: generateId(), busy: "Busy" }  
         const updatedData = [...existingData, newKolt];
 
         localStorage.setItem('koltData', JSON.stringify(updatedData));
 
         setKoltList(updatedData);
-        setKolt({ ...C.defaultKolt, id: generateId(), code: generateCode(), busy: "No" });
+        setKolt({ ...C.defaultKolt, id: generateId(), code: generateCode(), busy: "Free" });
     };
 
 

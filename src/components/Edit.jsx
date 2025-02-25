@@ -10,7 +10,17 @@ export default function Edit({ kolt, setKoltList, closeModal }) {
     });
 
     const handleChange = (e) => {
-        setUpdatedKolt({ ...updatedKolt, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        if (name === "newDate") {
+            const selectedYear = new Date(value).getFullYear();
+            if (selectedYear < 2025) {
+                alert("Date cannot be earlier than 2025!");
+                return;
+            }
+        }
+
+        setUpdatedKolt({ ...updatedKolt, [name]: value });
     };
 
     const handleCheckbox = () => {
@@ -27,7 +37,7 @@ export default function Edit({ kolt, setKoltList, closeModal }) {
                     ...item,
                     lastusedate: updatedKolt.newDate || item.lastusedate,
                     totalridekm: (parseFloat(item.totalridekm) + parseFloat(updatedKolt.dailyRide || 0)).toFixed(2),
-                    busy: updatedKolt.busy ? "Yes" : "No" 
+                    busy: updatedKolt.busy ? "Busy" : "Free" 
                 }
                 : item
         );

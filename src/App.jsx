@@ -9,7 +9,7 @@ import Delete from './components/Delete';
 export default function App() {
   const [koltList, setKoltList] = useState([]);
   const [selectedKolt, setSelectedKolt] = useState(null);
-  const [koltToDelete, setKoltToDelete] = useState(null);
+  const [deleteKolt, setDeleteKolt] = useState(null);
 
 
   useEffect(() => {
@@ -22,30 +22,32 @@ export default function App() {
     setSelectedKolt(kolt);
   };
 
-
+ 
   const closeEditModal = () => {
     setSelectedKolt(null);
   };
 
-
-  const openDeleteModal = (kolt) => {
-    setKoltToDelete(kolt);
+ 
+  const openDeleteModal = (koltCode) => {
+    setDeleteKolt(koltCode);
   };
 
-
+ 
   const closeDeleteModal = () => {
-    setKoltToDelete(null);
+    setDeleteKolt(null);
   };
 
-
+  
   const handleDelete = () => {
-    if (!koltToDelete) return;
+    if (deleteKolt) {
+      const updatedList = koltList
+        .filter(kolt => kolt.code !== deleteKolt)
+        .map((kolt, index) => ({ ...kolt, id: index + 1 }));
 
-    const updatedList = koltList.filter(kolt => kolt.code !== koltToDelete.code);
-    setKoltList(updatedList);
-    localStorage.setItem("koltData", JSON.stringify(updatedList));
-
-    closeDeleteModal();
+      setKoltList(updatedList);
+      localStorage.setItem("koltData", JSON.stringify(updatedList));
+      setDeleteKolt(null); 
+    }
   };
 
   return (
@@ -55,7 +57,11 @@ export default function App() {
           <Create setKoltList={setKoltList} />
         </div>
         <div className='list-bin'>
-          <List koltList={koltList} openEditModal={openEditModal} openDeleteModal={openDeleteModal} />
+          <List 
+            koltList={koltList} 
+            openEditModal={openEditModal} 
+            openDeleteModal={openDeleteModal} 
+          />
         </div>
       </div>
 
@@ -63,8 +69,8 @@ export default function App() {
         <Edit kolt={selectedKolt} setKoltList={setKoltList} closeModal={closeEditModal} />
       )}
 
-      {koltToDelete && (
-        <Delete kolt={koltToDelete} handleDelete={handleDelete} closeDeleteModal={closeDeleteModal} />
+      {deleteKolt && (
+        <Delete handleDelete={handleDelete} closeDeleteModal={closeDeleteModal} />
       )}
     </div>
   );
