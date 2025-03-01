@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+  }
+  
+  .app {
+    
+    
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    font-style: normal;
+    background: #f3f4f6;
+    
+    
+  }
+  
+  
+  .app-bin {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    
+  }
+  
+  .create-bin {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .list-bin {
+    text-align: center;
+    padding: 10px;
+   
+  }
+  .create-template {
+    min-width: 450px;
+    padding: 20px;
+    background: #f3f4f6;
+   
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  
+  }
+  
+  
+  .create-template div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  
+  .topic {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    
+    
+  }
+  
+  .create-template div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  
+  .kolt-totalkm-ctrl {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background: #000;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .kolt-totalkm-ctrl::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .kolt-totalkm-ctrl::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .kolt-ctrl {
+  
+    background-color: rgb(231, 237, 234);
+    border: solid rgb(200, 203, 202) 1px;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .kolt-date-ctrl  {
+    padding: 6px 30px;
+    border: solid rgb(200, 203, 202) 1px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: rgb(231, 237, 234);
+    cursor: pointer;
+  }
+  
+  .radio {
+    display: flex;
+    justify-content: space-between;
+    
+    
+  }
+  
+  .busy {
+    padding-right: 20px;
+    padding-left: 250px;
+  }
+  
+  
+  .list-header {
+    text-align: center;
+    color: black;
+   
+   
+    background: #f3f4f6;
+  }
+  .list-header h2 {
+  
+  border-bottom: 2px solid black;
+  padding: 10px;
+  }
+  .list-header h2 {
+    margin-top: 20px ;
+  }
+  
+  .list-body {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .list-group {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: solid 1px;
+    overflow: hidden;
+    
+  
+  }
+  
+  .list-group th, 
+  .list-group td {
+    padding: 12px 15px;
+    text-align: left;
+    
+    
+  }
+  
+  
+  .list-group .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: auto;
+  }
+  
+  .modal {
+    background: #f3f4f6;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    pointer-events: auto; 
+    font-weight: bold;
+  }
+  
+  .modal h2 {
+    border-bottom: 2px solid black;
+    padding: 10px;
+  }
+  
+  
+  
+  body.modal-open {
+    pointer-events: none;
+    overflow: hidden; 
+    
+  }
+  
+  .modal-content {
+    pointer-events: auto;
+  }
+  
+  .modal-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .modal-large {
+    width: 500px; 
+    padding: 30px;
+  }
+  
+  .modal-form {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .busy-label {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+  
+  .busy {
+    background-color: rgb(222, 85, 85);
+    color: white;
+  }
+  
+  .free {
+    background-color: rgb(67, 196, 67);
+    color: white;
+  }
+  
+  
+  
+  .no-data {
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    color: gray;
+  }
+  
+  
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .sorting-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .sorting-buttons button {
+    padding: 8px 12px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    justify-content: center;
+  }
+  
+  .sorting-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
