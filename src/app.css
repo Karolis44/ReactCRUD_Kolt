@@ -23,6 +23,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
+  flex-wrap: wrap;
   
 }
 
@@ -249,12 +250,12 @@ body.modal-open {
 }
 
 .busy {
-  background-color: red;
+  background-color: rgb(222, 85, 85);
   color: white;
 }
 
 .free {
-  background-color: green;
+  background-color: rgb(67, 196, 67);
   color: white;
 }
 
