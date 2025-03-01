@@ -50,15 +50,15 @@ export default function Create({ setKoltList }) {
             <div className="topic">New Kolt</div>
             <div>
                 <label className="kolt-id">ID:</label>
-                <input type="text" name="id" className="kolt-id-ctrl" readOnly value={kolt.id} />
+                <input type="text" name="id"  className="kolt-ctrl" readOnly value={kolt.id} />
             </div>
             <div>
                 <label className="kolt-code">Code:</label>
-                <input type="text" name="code" className="kolt-code-ctrl" value={kolt.code} readOnly />
+                <input type="text" name="code" className="kolt-ctrl" value={kolt.code} readOnly />
             </div>
             <div>
                 <label className="kolt-busy">IsBusy:</label>
-                <input type="text" name="busy" className="kolt-busy-ctrl" readOnly value={kolt.busy} />
+                <input type="text" name="busy" className="kolt-ctrl" readOnly value={kolt.busy} />
             </div>
             <div>
                 <label className="kolt-date">Last used:</label>

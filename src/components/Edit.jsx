@@ -60,15 +60,15 @@ export default function Edit({ kolt, setKoltList, closeModal }) {
                 <form onSubmit={handleSave} className="modal-form">
                     <div className="modal-field">
                         <label>Registration code:</label>
-                        <input type="text" value={updatedKolt.code} readOnly />
+                        <input type="text" className="kolt-ctrl" value={updatedKolt.code} readOnly />
                     </div>
                     <div className="modal-field">
                         <label>Last Used:</label>
-                        <input type="text" value={kolt.lastusedate} readOnly />
+                        <input type="text" className="kolt-ctrl" value={kolt.lastusedate} readOnly />
                     </div>
                     <div className="modal-field">
                         <label>New date:</label>
-                        <input type="date" name="newDate" onChange={handleChange} />
+                        <input type="date" name="newDate" className="kolt-date-ctrl" onChange={handleChange} />
                     </div>
                     <div className="modal-field">
                         <label>Totall ride km:</label>
@@ -76,7 +76,7 @@ export default function Edit({ kolt, setKoltList, closeModal }) {
                     </div>
                     <div className="modal-field range-container">
                         <label>This day ride km:</label>
-                        <input type="range" name="dailyRide" min="0" max="5000" step="0.01" value={updatedKolt.dailyRide} onChange={handleChange} />
+                        <input type="range" name="dailyRide" className="kolt-totalkm-ctrl" min="0" max="5000" step="0.01" value={updatedKolt.dailyRide} onChange={handleChange} />
                         <b>{updatedKolt.dailyRide} km</b>
                     </div>
                     <div className="modal-field checkbox-container">
