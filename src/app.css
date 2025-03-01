@@ -244,6 +244,7 @@ body.modal-open {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  
 }
 
 .checkbox-container {
@@ -277,4 +278,35 @@ body.modal-open {
   padding: 10px;
   font-size: 16px;
   color: gray;
+}
+
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sorting-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.sorting-buttons button {
+  padding: 8px 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  justify-content: center;
+}
+
+.sorting-buttons button:hover {
+  background-color: #0056b3;
 }

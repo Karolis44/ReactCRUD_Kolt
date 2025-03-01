@@ -1,8 +1,37 @@
+import { useState, useEffect } from "react";
+
 export default function List({ koltList, openEditModal, openDeleteModal }) {
+    const [sortedList, setSortedList] = useState([...koltList]);
+    const [totalKm, setTotalKm] = useState(0);
+
+    
+    useEffect(() => {
+        setSortedList([...koltList]); 
+        setTotalKm(koltList.reduce((acc, kolt) => acc + parseFloat(kolt.totalridekm || 0), 0)); 
+    }, [koltList]);
+
+   
+    const sortByKm = () => {
+        setSortedList(koltList.toSorted((a, b) => parseFloat(b.totalridekm) - parseFloat(a.totalridekm)));
+    };
+
+    
+    const sortByDate = () => {
+        setSortedList(koltList.toSorted((a, b) => new Date(b.lastusedate) - new Date(a.lastusedate)));
+    };
+
     return (
         <div className="list-template">
             <div className="list-header">
-                <h2>Kolt list</h2>
+                <h2>Kolt List</h2>
+
+               
+                <div className="stats">
+                    <p><strong>Total scooters:</strong> {koltList.length}</p>
+                    <p><strong>Total km:</strong> {totalKm.toFixed(2)} </p>
+                </div>
+
+               
                 <div className="list-body">
                     <table className="list-group">
                         <thead>
@@ -16,9 +45,9 @@ export default function List({ koltList, openEditModal, openDeleteModal }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {koltList.length > 0 ? (
-                                koltList.map((kolt) => (
-                                    <tr key={kolt.code}> 
+                            {sortedList.length > 0 ? (
+                                sortedList.map((kolt) => (
+                                    <tr key={kolt.code}>
                                         <td>{kolt.id}</td>
                                         <td>{kolt.code}</td>
                                         <td>{kolt.busy === "Busy" ? "Busy" : "Free"}</td>
@@ -37,6 +66,11 @@ export default function List({ koltList, openEditModal, openDeleteModal }) {
                             )}
                         </tbody>
                     </table>
+                </div>
+
+                <div className="sorting-buttons">
+                    <button className="blue" onClick={sortByKm}>Sort by km</button>
+                    <button className="blue" onClick={sortByDate}>Sort by date</button>
                 </div>
             </div>
         </div>

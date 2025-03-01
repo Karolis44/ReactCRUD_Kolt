@@ -3,27 +3,22 @@ import * as C from './constants';
 import generateCode from "../functions/generateCode";
 import generateId from "../functions/generateId";
 
-
-
 export default function Create({ setKoltList }) {
-    
-    const [kolt, setKolt] = useState({ ...C.defaultKolt, id: generateId(), code: generateCode() });
-
-   
+    const [kolt, setKolt] = useState({ ...C.defaultKolt, id: generateId(), code: generateCode(), busy: "Free" });
 
     useEffect(() => {
         setKolt(prev => ({ ...prev, id: generateId(), code: generateCode(), busy: "Free" }));
     }, []);
 
-
-
     const handleKolt = e => {
         let { name, value } = e.target;
 
         if (name === 'lastusedate') {
-            const selectedYear = new Date(value).getFullYear();
-            if (selectedYear < 2025) {
-                alert("Date cannot be earlier than 2025!");
+            const selectedDate = new Date(value);
+            const minDate = new Date("2025-01-01");
+
+            if (selectedDate < minDate) {
+                alert("Date cannot be earlier than January 1, 2025!");
                 return;
             }
         }
@@ -35,21 +30,20 @@ export default function Create({ setKoltList }) {
         setKolt({ ...kolt, [name]: value });
     };
 
-
-
     const saveToLocalStorage = () => {
-        let existingData = JSON.parse(localStorage.getItem('koltData')) || [];
+        if (!kolt.lastusedate) {
+            alert("You must select a last used date!");
+            return;
+        }
 
-        const newKolt = { ...kolt, id: generateId(), busy: "Busy" }  
+        let existingData = JSON.parse(localStorage.getItem('koltData')) || [];
+        const newKolt = { ...kolt, id: generateId(), busy: "Busy" };
         const updatedData = [...existingData, newKolt];
 
         localStorage.setItem('koltData', JSON.stringify(updatedData));
-
         setKoltList(updatedData);
         setKolt({ ...C.defaultKolt, id: generateId(), code: generateCode(), busy: "Free" });
     };
-
-
 
     return (
         <div className="create-template">
@@ -68,7 +62,7 @@ export default function Create({ setKoltList }) {
             </div>
             <div>
                 <label className="kolt-date">Last used:</label>
-                <input type="date" name="lastusedate" className="kolt-date-ctrl" onChange={handleKolt} value={kolt.lastusedate} />
+                <input  type="date" name="lastusedate" className="kolt-date-ctrl" onChange={handleKolt} value={kolt.lastusedate} min="2025-01-01" required/>
             </div>
             <div>
                 <label>Ride km: <b className="kolt-totalkm">{kolt.totalridekm}km</b></label>
