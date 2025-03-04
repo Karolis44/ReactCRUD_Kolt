@@ -15,7 +15,7 @@ export default function Edit({ kolt, setKoltList, closeModal }) {
         if (name === "newDate") {
             const selectedYear = new Date(value).getFullYear();
             if (selectedYear < 2025) {
-                alert("Date cannot be earlier than 2025!");
+                
                 return;
             }
         }
@@ -68,7 +68,7 @@ export default function Edit({ kolt, setKoltList, closeModal }) {
                     </div>
                     <div className="modal-field">
                         <label>New date:</label>
-                        <input type="date" name="newDate" className="kolt-date-ctrl" onChange={handleChange} />
+                        <input type="date" name="newDate" className="kolt-date-ctrl" onChange={handleChange} min="2025-01-01" required />
                     </div>
                     <div className="modal-field">
                         <label>Totall ride km:</label>

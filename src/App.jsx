@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import './app.css';
+import './app2.css';
 import './buttons.css';
 import Create from './components/Create';
 import List from './components/List';
@@ -12,10 +12,10 @@ export default function App() {
   const [deleteKolt, setDeleteKolt] = useState(null);
 
 
-  useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("koltData")) || [];
-    setKoltList(savedData);
-  }, []);
+   useEffect(() => {
+        const savedData = JSON.parse(localStorage.getItem("koltData")) || [];
+        setKoltList(savedData);
+    }, []);
 
 
   const openEditModal = (kolt) => {
@@ -38,29 +38,27 @@ export default function App() {
   };
 
   
-  const handleDelete = () => {
+const handleDelete = () => {
     if (deleteKolt) {
-      const updatedList = koltList
-        .filter(kolt => kolt.code !== deleteKolt)
-        .map((kolt, index) => ({ ...kolt, id: index + 1 }));
+        const updatedList = koltList.filter(kolt => kolt.code !== deleteKolt);
 
-      setKoltList(updatedList);
-      localStorage.setItem("koltData", JSON.stringify(updatedList));
-      setDeleteKolt(null); 
+        setKoltList(updatedList);
+        localStorage.setItem("koltData", JSON.stringify(updatedList));
+        setDeleteKolt(null);
     }
-  };
+};
+
+
 
   return (
     <div className='app'>
       <div className='app-bin'>
         <div className='create-bin'>
-          <Create setKoltList={setKoltList} />
+          <Create setKoltList={setKoltList} koltList={koltList} />
         </div>
         <div className='list-bin'>
           <List 
-            koltList={koltList} 
-            openEditModal={openEditModal} 
-            openDeleteModal={openDeleteModal} 
+            koltList={koltList} openEditModal={openEditModal} openDeleteModal={openDeleteModal} 
           />
         </div>
       </div>

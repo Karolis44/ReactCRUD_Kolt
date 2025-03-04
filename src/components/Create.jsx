@@ -3,12 +3,23 @@ import * as C from './constants';
 import generateCode from "../functions/generateCode";
 import generateId from "../functions/generateId";
 
-export default function Create({ setKoltList }) {
-    const [kolt, setKolt] = useState({ ...C.defaultKolt, id: generateId(), code: generateCode(), busy: "Free" });
+export default function Create({ setKoltList, koltList }) {
+    const [kolt, setKolt] = useState({
+        ...C.defaultKolt,
+        id: generateId(koltList),
+        code: generateCode(),
+        busy: "Free"
+    });
 
+   
     useEffect(() => {
-        setKolt(prev => ({ ...prev, id: generateId(), code: generateCode(), busy: "Free" }));
-    }, []);
+        setKolt({
+            ...C.defaultKolt,
+            id: generateId(koltList),
+            code: generateCode(),
+            busy: "Free"
+        });
+    }, [koltList]);
 
     const handleKolt = e => {
         let { name, value } = e.target;
@@ -18,7 +29,7 @@ export default function Create({ setKoltList }) {
             const minDate = new Date("2025-01-01");
 
             if (selectedDate < minDate) {
-                alert("Date cannot be earlier than January 1, 2025!");
+               
                 return;
             }
         }
@@ -27,22 +38,18 @@ export default function Create({ setKoltList }) {
             value = parseFloat(value).toFixed(2);
         }
 
-        setKolt({ ...kolt, [name]: value });
+        setKolt(prev => ({ ...prev, [name]: value }));
     };
 
     const saveToLocalStorage = () => {
-        if (!kolt.lastusedate) {
-            alert("You must select a last used date!");
-            return;
-        }
+        if (!kolt.lastusedate) return;
 
         let existingData = JSON.parse(localStorage.getItem('koltData')) || [];
-        const newKolt = { ...kolt, id: generateId(), busy: "Busy" };
+        const newKolt = { ...kolt, id: generateId(existingData), busy: "Busy" };
         const updatedData = [...existingData, newKolt];
 
         localStorage.setItem('koltData', JSON.stringify(updatedData));
-        setKoltList(updatedData);
-        setKolt({ ...C.defaultKolt, id: generateId(), code: generateCode(), busy: "Free" });
+        setKoltList(updatedData); 
     };
 
     return (
@@ -50,19 +57,19 @@ export default function Create({ setKoltList }) {
             <div className="topic">New Kolt</div>
             <div>
                 <label className="kolt-id">ID:</label>
-                <input type="text" name="id"  className="kolt-ctrl" readOnly value={kolt.id} />
+                <input type="text" name="id" className="kolt-ctrl" readOnly value={kolt.id} />
             </div>
             <div>
                 <label className="kolt-code">Code:</label>
                 <input type="text" name="code" className="kolt-ctrl" value={kolt.code} readOnly />
             </div>
             <div>
-                <label className="kolt-busy">IsBusy:</label>
+                <label className="kolt-busy">Is Busy:</label>
                 <input type="text" name="busy" className="kolt-ctrl" readOnly value={kolt.busy} />
             </div>
             <div>
                 <label className="kolt-date">Last used:</label>
-                <input  type="date" name="lastusedate" className="kolt-date-ctrl" onChange={handleKolt} value={kolt.lastusedate} min="2025-01-01" required/>
+                <input type="date" name="lastusedate" className="kolt-date-ctrl" onChange={handleKolt} value={kolt.lastusedate} min="2025-01-01" required />
             </div>
             <div>
                 <label>Ride km: <b className="kolt-totalkm">{kolt.totalridekm}km</b></label>
