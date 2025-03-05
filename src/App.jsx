@@ -12,41 +12,54 @@ export default function App() {
   const [deleteKolt, setDeleteKolt] = useState(null);
 
 
-   useEffect(() => {
-        const savedData = JSON.parse(localStorage.getItem("koltData")) || [];
-        setKoltList(savedData);
-    }, []);
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("koltData")) || [];
+    setKoltList(savedData);
+  }, []);
 
 
   const openEditModal = (kolt) => {
     setSelectedKolt(kolt);
   };
 
- 
+
   const closeEditModal = () => {
     setSelectedKolt(null);
   };
 
- 
+
   const openDeleteModal = (koltCode) => {
     setDeleteKolt(koltCode);
   };
 
- 
+
   const closeDeleteModal = () => {
     setDeleteKolt(null);
   };
 
-  
-const handleDelete = () => {
-    if (deleteKolt) {
-        const updatedList = koltList.filter(kolt => kolt.code !== deleteKolt);
 
-        setKoltList(updatedList);
-        localStorage.setItem("koltData", JSON.stringify(updatedList));
-        setDeleteKolt(null);
+  const handleDelete = () => {
+    if (deleteKolt) {
+
+      const updatedList = koltList.filter(kolt => kolt.code !== deleteKolt);
+      localStorage.setItem("koltData", JSON.stringify(updatedList));
+      const deletedItems = JSON.parse(localStorage.getItem("deletedItems")) || [];
+      const deletedItem = koltList.find(kolt => kolt.code === deleteKolt);
+      if (deletedItem) {
+        deletedItems.push({
+          id: deletedItem.id,
+          code: deletedItem.code,
+        });
+        localStorage.setItem("deletedItems", JSON.stringify(deletedItems));
+      }
+
+      setKoltList(updatedList);
+
+      setDeleteKolt(null);
     }
-};
+  };
+
+
 
 
 
@@ -57,8 +70,8 @@ const handleDelete = () => {
           <Create setKoltList={setKoltList} koltList={koltList} />
         </div>
         <div className='list-bin'>
-          <List 
-            koltList={koltList} openEditModal={openEditModal} openDeleteModal={openDeleteModal} 
+          <List
+            koltList={koltList} openEditModal={openEditModal} openDeleteModal={openDeleteModal}
           />
         </div>
       </div>

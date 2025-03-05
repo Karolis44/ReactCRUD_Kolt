@@ -1,25 +1,17 @@
-
-
 export default function generateId(koltList = []) {
-    if (!koltList.length) return 1;
-    
-    const maxId = Math.max(...koltList.map(kolt => kolt.id), 0);
-    return maxId + 1;
+   
+    const deletedItems = JSON.parse(localStorage.getItem("deletedItems")) || [];
+    const deletedIds = deletedItems.map(item => item.id);
+
+
+    const existingIds = koltList.map(kolt => kolt.id);
+
+    const allUsedIds = [...existingIds, ...deletedIds];
+
+    let newId = 1;
+    while (allUsedIds.includes(newId)) {
+        newId++;
+    }
+
+    return newId;
 }
-
-
-
-// export default function generateId(koltList = []) {
-//     if (!koltList.length) return 1;
-
-//     const existingIds = koltList.map(kolt => kolt.id).sort((a, b) => a - b);
-
-//     for (let i = 0; i < existingIds.length; i++) {
-//         if (existingIds[i] !== i + 1) {
-//             return i + 1; 
-//         }
-//     }
-
-//     return existingIds.length + 1;
-// }
-
