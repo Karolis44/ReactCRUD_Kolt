@@ -11,7 +11,6 @@ export default function Create({ setKoltList, koltList }) {
         busy: "Free"
     });
 
-   
     useEffect(() => {
         setKolt({
             ...C.defaultKolt,
@@ -29,7 +28,6 @@ export default function Create({ setKoltList, koltList }) {
             const minDate = new Date("2025-01-01");
 
             if (selectedDate < minDate) {
-               
                 return;
             }
         }
@@ -49,7 +47,10 @@ export default function Create({ setKoltList, koltList }) {
         const updatedData = [...existingData, newKolt];
 
         localStorage.setItem('koltData', JSON.stringify(updatedData));
-        setKoltList(updatedData); 
+
+        localStorage.setItem('lastCreatedKoltId', newKolt.id);
+
+        setKoltList(updatedData);
     };
 
     return (

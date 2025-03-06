@@ -1,15 +1,12 @@
 export default function generateId(koltList = []) {
-   
-    const deletedItems = JSON.parse(localStorage.getItem("deletedItems")) || [];
-    const deletedIds = deletedItems.map(item => item.id);
+  
+    const lastCreatedKoltId = parseInt(localStorage.getItem('lastCreatedKoltId')) || 0;
 
+    let newId = lastCreatedKoltId + 1;
 
     const existingIds = koltList.map(kolt => kolt.id);
 
-    const allUsedIds = [...existingIds, ...deletedIds];
-
-    let newId = 1;
-    while (allUsedIds.includes(newId)) {
+    while (existingIds.includes(newId)) {
         newId++;
     }
 
